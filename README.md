@@ -1,12 +1,52 @@
-# React + Vite
+ # 🛍️ E-Commerce Frontend (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **E-Commerce Frontend**, a modern shopping web application built with **React, Vite, and Tailwind CSS**.  
+It provides a fast, interactive, and mobile-friendly user experience for browsing and purchasing products online.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** [https://ecommerce-front-end-project.netlify.app](https://ecommerce-front-end-project.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🧭 **Intuitive Navigation** — Seamless routing using React Router.  
+- 🏠 **Beautiful Homepage** — Promotional banner, product categories, and responsive hero section.  
+- 🛒 **Shopping Cart** — Add, edit, and remove products in real time.  
+- 🔐 **User Authentication** — Signup and login forms for users.  
+- 🏡 **Address Management** — Add, edit, and delete delivery addresses.  
+- 🎨 **Modern UI** — Styled with Tailwind CSS for a clean, elegant design.  
+- ⚡ **Optimized Build** — Powered by Vite for lightning-fast development and production builds.  
+
+---
+
+## 🧩 Tech Stack
+
+| Category | Technology |
+|-----------|-------------|
+| Frontend Framework | [React.js](https://react.dev/) |
+| Build Tool | [Vite](https://vitejs.dev/) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) |
+| State Management | React Context API |
+| Routing | React Router v6 |
+| Deployment | [Netlify](https://www.netlify.com/) |
+| Backend API | [Express.js](https://expressjs.com/) (Hosted separately on Render) |
+
+---
+
+## 🏗️ Project Structure
+ecommerce-frontend/
+│
+├── src/
+│ ├── pages/ # All main page components
+│ ├── Context/ # Cart and global state management
+│ ├── images/ # Static assets
+│ ├── App.jsx # App routes and layout
+│ ├── main.jsx # Entry point
+│ └── index.css # Global styles
+│
+├── public/
+│ └── vite.svg # App favicon
+│
+├── package.json
+├── vite.config.js
+└── README.md
