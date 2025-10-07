@@ -40,7 +40,7 @@ function Navbar() {
     <nav className="bg-yellow-300 flex justify-between py-8 px-3 items-center">
       {/* Logo */}
       <Link to="/home">
-        <h1 className="text-3xl font-bold">MyShop</h1>
+        <h1 className="text-3xl font-bold">Shopy</h1>
       </Link>
 
       {/* Right Side: Cart + Login */}
