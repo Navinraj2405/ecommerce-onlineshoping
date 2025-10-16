@@ -1,12 +1,27 @@
- // src/pages/CartPage.jsx
-import React, { useContext } from "react";
+ import React, { useContext, useEffect } from "react";
 import { CartContext } from "../Context/CartContext";
+import { useNavigate } from "react-router-dom";
 
-function CartPage() {
-  const { cart, removeFromCart } = useContext(CartContext);
-  const totalPrice = cart.reduce((total, product) => total + product.price, 0);
+function CartPage({ user }) {
+  const { cart, setCart, removeFromCart, updateQuantity } = useContext(CartContext);
+  const navigate = useNavigate();
 
-  if (cart.length === 0) {
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const res = await fetch(`https://ecommerce-backend-xveu.onrender.com/api/cart/${user.uid}`);
+        const data = await res.json();
+        setCart(data);
+      } catch (err) {
+        console.error("Failed to fetch cart:", err);
+      }
+    };
+    if (user) fetchCart();
+  }, [user, setCart]);
+
+  const totalPrice = cart.reduce((total, product) => total + product.price * (product.quantity || 1), 0);
+
+  if (!cart || cart.length === 0) {
     return (
       <h2 className="text-center mt-20 text-2xl font-bold text-yellow-900">
         🛒 Your cart is empty
@@ -31,10 +46,29 @@ function CartPage() {
               alt={product.title}
               className="w-36 h-36 object-contain rounded-lg"
             />
-            <p className="mt-4 text-center font-semibold text-gray-800">
-              {product.title}
+            <p className="mt-4 text-center font-semibold text-gray-800">{product.title}</p>
+            <p className="text-green-700 font-bold mt-2">${product.price.toFixed(2)}</p>
+
+            <div className="flex items-center gap-3 mt-3">
+              <button
+                onClick={() => updateQuantity(product.id, (product.quantity || 1) - 1)}
+                className="bg-gray-300 text-gray-800 px-3 py-1 rounded-full hover:bg-gray-400 transition"
+              >
+                −
+              </button>
+              <span className="font-semibold text-gray-800">{product.quantity || 1}</span>
+              <button
+                onClick={() => updateQuantity(product.id, (product.quantity || 1) + 1)}
+                className="bg-gray-300 text-gray-800 px-3 py-1 rounded-full hover:bg-gray-400 transition"
+              >
+                +
+              </button>
+            </div>
+
+            <p className="mt-2 text-gray-700 font-semibold">
+              Subtotal: ${(product.price * (product.quantity || 1)).toFixed(2)}
             </p>
-            <p className="text-green-700 font-bold mt-2">${product.price}</p>
+
             <button
               onClick={() => removeFromCart(product.id)}
               className="bg-red-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-red-600 transition-colors"
@@ -45,10 +79,19 @@ function CartPage() {
         ))}
       </div>
 
-      {/* Total Price */}
       <div className="mt-8 p-5 bg-yellow-100 rounded-xl shadow-md flex justify-between items-center max-w-md mx-auto">
         <span className="text-xl font-semibold text-gray-800">Total Price:</span>
         <span className="text-xl font-bold text-green-700">${totalPrice.toFixed(2)}</span>
+      </div>
+
+      {/* Checkout Button */}
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={() => navigate("/payment")}
+          className="bg-green-600 text-white px-6 py-3 rounded-xl hover:bg-green-700 transition-all duration-300"
+        >
+          Proceed to Checkout
+        </button>
       </div>
     </div>
   );

@@ -22,9 +22,9 @@ function Homepage() {
   <div className="absolute inset-0 bg-yellow-50/30"></div>
 
   {/* Centered Content */}
-  <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 sm:px-8 ">
+  <div className="absolute bottom-5 left-10 flex flex-col  items-center text-center px-4 sm:px-8 ">
     <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-yellow-300 drop-shadow-lg">
-      Welcome to MyShop
+      Welcome to Shopy
     </h2>
     <p className="mt-2 text-lg sm:text-xl md:text-2xl font-semibold text-gray-800">
       Here you start the purchase
